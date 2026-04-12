@@ -6,18 +6,18 @@ It features a built-in Pareto-front engine to find optimal runs, SHAP analysis t
 
 ## Features
 
-- **Local Strategy:** Runs fully on your local machine using SQLite tracking databases (for MLflow and Optuna) and Streamlit out-of-the-box.
+- **Local Strategy:** Runs fully on your local machine using SQLite tracking databases (for MLflow and Optuna).
 - **Cost Estimation Mapping:** Uses a `params.yaml` rate map to estimate compute costs dynamically per experiment.
 - **Data Engineering:** Features are engineered into columnar Apache Parquet files using a fully DVC-versioned pipeline.
 - **Pareto Efficiency:** Scans the cost/accuracy space to find strictly optimal models, discarding expensive but underperforming runs.
-- **ROI Dashboard:** Streamlit UI allows you to visualize convergence, explore hyperparameter importance (SHAP), restrict budgets, and review optimal selections. 
+- **Dual Dashboards:** Visualize convergence, explore hyperparameter importance (SHAP), restrict budgets, and review optimal selections via two distinct user interfaces (Streamlit or React). 
 
 ## Tech Stack
 
 - **Experiment Tracking:** MLflow, Optuna
 - **ML / Analysis:** Scikit-Learn, SHAP
 - **Data Munging:** Pandas, PyArrow, DVC
-- **Dashboard:** Streamlit, Plotly
+- **Dashboards:** Streamlit, React, Vite, FastAPI
 
 ## Quick Start
 
@@ -43,15 +43,22 @@ It features a built-in Pareto-front engine to find optimal runs, SHAP analysis t
    ```bash
    dvc repro
    ```
-5. **Launch the Dashboard:**
-   We have two flavors of the dashboard available for you to analyze your runs. Please see their respective instruction manuals for architecture details and how to run them:
-   - **[Streamlit Dashboard (Default)](dashboard_docs/streamlit/INSTRUCTIONS.md)**
-   - **[React / FastAPI Dashboard](dashboard_docs/react/INSTRUCTIONS.md)**
+5. **Launch a Dashboard:**
+   This project features two distinct dashboards for you to interact with your data. For full architecture details and start-up instructions, please see the dedicated documentation in the `dashboard_docs/` folder:
+   
+   * **[Streamlit Dashboard](dashboard_docs/streamlit/README.md)**: The classic Python-native UI built with Streamlit and Plotly.
+   * **[React / FastAPI Dashboard](dashboard_docs/react/README.md)**: A modern decoupled web app featuring a Vite+React frontend and FastAPI backend.
+
+   To quickly launch either of them, refer to their instruction manuals:
+   - [👉 Run Streamlit Dashboard](dashboard_docs/streamlit/INSTRUCTIONS.md)
+   - [👉 Run React Dashboard](dashboard_docs/react/INSTRUCTIONS.md)
 
 ## Development and Architecture
 - `src/ingestion`: Connectors for MLFlow tracking database and Optuna registry.
 - `src/processing`: Extraction and data preparation routines (`feature_builder.py`, `cost_calculator.py`).
 - `src/analysis`: Mathematical and evaluation engines (SHAP importance modelling, Pareto optimization).
-- `src/dashboard`: Presentation layer driven by Streamlit.
+- `src/dashboard`: The unified alternative presentation layer driven by Streamlit.
+- `src/api` & `frontend`: The decoupled presentation layer powered by a FastAPI backend and a React/Vite frontend.
+- `dashboard_docs`: Documentation and instructions detailing both presentation layers.
 
 This project is intended strictly as a localhost portfolio piece to demonstrate rigorous feature engineering, software engineering skills, and machine learning insight.
