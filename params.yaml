@@ -1,0 +1,7 @@
+# params.yaml
+instance_costs:
+  local_cpu: 0.05       # Estimated electricity/depreciation $/hr
+  local_gpu: 0.20       # Local machine with a dedicated GPU
+  colab_free: 0.0       # Google Colab free tier
+  aws_t3_medium: 0.0416 # AWS EC2 On-Demand
+  aws_p3_2xlarge: 3.06  # AWS EC2 GPU instance

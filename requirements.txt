@@ -1,0 +1,22 @@
+# Experiment Tracking & ML
+mlflow
+optuna
+scikit-learn
+shap
+
+# Data Processing & Storage
+pandas
+pyarrow
+duckdb
+
+# MLOps & Versioning
+dvc
+
+# System Metrics
+psutil
+gputil
+
+# Dashboard & Viz
+streamlit
+plotly
+pyyaml

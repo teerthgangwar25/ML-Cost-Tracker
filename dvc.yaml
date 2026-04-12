@@ -1,0 +1,19 @@
+stages:
+  build_features:
+    cmd: python src/processing/feature_builder.py
+    deps:
+      - src/processing/feature_builder.py
+      - src/processing/cost_calculator.py
+      - src/ingestion/mlflow_connector.py
+      - params.yaml
+      - mlflow_tracking.db
+    outs:
+      - data/processed/runs_features.parquet
+
+  calculate_pareto:
+    cmd: python src/analysis/pareto.py
+    deps:
+      - data/processed/runs_features.parquet
+      - src/analysis/pareto.py
+    outs:
+      - data/processed/runs_pareto.parquet
